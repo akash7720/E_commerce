@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 
+
 const Register = () => {
 const router= useNavigate()
   const [userData, setUserData]=useState({name:"", email:"",password:"", ConfirmPassword:""})

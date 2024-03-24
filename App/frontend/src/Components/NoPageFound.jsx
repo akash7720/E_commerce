@@ -9,12 +9,12 @@ const NotFound = () => {
         setTimeout(() => {
             router('/')
         }, 2000)
-    }, [])
+    }, []);
 
     return (
         <div>
             <h2>Page not found</h2>
-            <p>Redirecting you in home in 2 sec...</p>
+            <p>Redirecting you in Home Page in 2 sec...</p>
         </div>
     )
 }

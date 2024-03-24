@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import'./Navbar.css'
+import'./All-CSS-files/Navbar.css'
 import { FaUserCircle } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 
 
 const Navbar = () => {
     const router = useNavigate();
+
+    const [showMenu,setShowMenu]=useState(false)
   return (
    
     <div >
@@ -20,7 +22,10 @@ const Navbar = () => {
              </div>
               
               <div className='MIddel-nav'>
+                <input type="text" placeholder="Search..."></input>
               <p onClick={ ()=>router('/')}>Home</p>
+              
+             
               </div>
  
               <div className='Right-nav'>
@@ -30,8 +35,13 @@ const Navbar = () => {
                      
                     </div>
                     <div className='R-two'>
-                         <div><FaUserCircle /></div>
-                         <div><FiShoppingCart /></div>
+                         <div><FaUserCircle/></div>
+                         <div onClick={ ()=>router('/AddCart')}><FiShoppingCart /></div>
+                    </div>
+
+                    <div className='AddProducts'>
+                         <p>Add product </p>
+                         <p>LogOut</p>
                     </div>
               </div>
      </div>
