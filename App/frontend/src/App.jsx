@@ -8,6 +8,7 @@ import NoPageFound from './Components/NoPageFound';
 import Navbar from './Components/Navbar';
 import AddCart from './Components/AddCart';
 import UserDetiles from './Components/UserDetiles';
+import Orderdetails from './Components/Orderdetails';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path='/Login' element={<Login/>}/>
           <Route path='/AddCart' element={<AddCart/>}/>
           <Route path='/UserDetiles' element={<UserDetiles/>}/>
-          
+          <Route path='/Orderdetails' element={<Orderdetails/>}/>
       </Routes>
      
     </div>

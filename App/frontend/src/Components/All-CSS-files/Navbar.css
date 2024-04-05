@@ -27,18 +27,30 @@
 .MIddel-nav{
     /* border: 5px solid greenyellow; */
     width: 45%;
-    display: flex;
-    /* justify-content: space-around;  */
+    text-align: left;
+    /* display: flex;
+    justify-content: space-around;  */
    
 }
 .MIddel-nav>input{
+    /* border:  5px solid red; */
     margin-top: 10px;
-height: 25px;
-width: 250px;
- margin-right: 20px;
+  height: 27px;
+   width: 250px;
+
 border-radius: 8px;
 background-color: antiquewhite;
 }
+
+.Search{
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+.Search:focus{
+    width: 90%;
+}
+
 .Right-nav{
     /* border: 5px solid green; */
     width:20%;
@@ -52,6 +64,7 @@ background-color: antiquewhite;
     display: flex;
     justify-content: space-evenly; 
     width: 50%;
+    font-size: 16px;
    
 }
 

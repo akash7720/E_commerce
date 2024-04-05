@@ -8,7 +8,8 @@ import { FiShoppingCart } from "react-icons/fi";
 const Navbar = () => {
     const router = useNavigate();
 
-    const [showMenu,setShowMenu]=useState(false)
+    // const [showMenu,setShowMenu]=useState(false)
+
   return (
    
     <div >
@@ -18,19 +19,21 @@ const Navbar = () => {
           <div className='nav-parent'>
              
              <div className='Left-nav'>
-                 {/* LOGO */}
+                 <p onClick={ ()=>router('/')}>Home</p>
              </div>
               
               <div className='MIddel-nav'>
-                <input type="text" placeholder="Search..."></input>
-              <p onClick={ ()=>router('/')}>Home</p>
+                  
+               
+                <input type="text" name="search" className='Search' placeholder="Search.."></input>
+           
               
              
               </div>
  
               <div className='Right-nav'>
                     <div className='R-one'>
-                     <p onClick={ ()=>router('/Login')}>Login</p>
+                    <p onClick={ ()=>router('/Login')}>Login</p> 
                       <p onClick={ ()=>router('/Register')}>Register</p> 
                      
                     </div>
@@ -39,10 +42,10 @@ const Navbar = () => {
                          <div onClick={ ()=>router('/AddCart')}><FiShoppingCart /></div>
                     </div>
 
-                    <div className='AddProducts'>
+                    {/* <div className='AddProducts'>
                          <p>Add product </p>
                          <p>LogOut</p>
-                    </div>
+                    </div> */}
               </div>
      </div>
     </div>
