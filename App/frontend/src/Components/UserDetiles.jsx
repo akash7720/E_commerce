@@ -5,8 +5,7 @@ const UserDetiles = () => {
     <div>
         <h3>User-Detiles</h3>
         <p>Name:</p>
-        <p>Email:</p>
-        
+       
     </div>
   )
 }

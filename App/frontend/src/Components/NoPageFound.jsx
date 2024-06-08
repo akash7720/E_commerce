@@ -8,13 +8,13 @@ const NotFound = () => {
     useEffect(() => {
         setTimeout(() => {
             router('/')
-        }, 2000)
+        }, 3000)
     }, []);
 
     return (
         <div>
             <h2>Page not found</h2>
-            <p>Redirecting you in Home Page in 2 sec...</p>
+            <p>Redirecting you in Home Page in 3 sec...</p>
         </div>
     )
 }

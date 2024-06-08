@@ -6,7 +6,9 @@ import './All-CSS-files/Login.css';
 
 const Register = () => {
   const router = useNavigate();
+  
   const [userData, setUserData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
+  console.log(userData, "userData")
 
   function handleChange(event) {
     setUserData({ ...userData, [event.target.name]: event.target.value });
