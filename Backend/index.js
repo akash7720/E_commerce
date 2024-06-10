@@ -1,44 +1,74 @@
-import express from 'express'
-import mongoose from 'mongoose';
-import dotenv from 'dotenv'
-import ProductSchema from './schemas/product.schema.js';
+
+import  express  from "express";
+import mongoose, { Schema } from "mongoose";
+import dotenv from "dotenv";
+import { ProductSchema } from "./schemas/product.schema.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import AllRoutes from "./routes/index.js"
+
 
 const app = express();
-dotenv.confing();
+var corsOptions = {
+  origin : [
+    "http://localhost:3000",
+  //  "https://react-02-4l1e.vercel.app",
+],
+ credentials:true,
+ };
+
+ 
+dotenv.config()
 app.use(express.json());
+app.use(cookieParser());
 
-app.get("/",(req,res)=>{
-   res.send("Working..")
-})
 
-app.post("/add-product",async(req,res)=>{
+app.use(cors(corsOptions));
+
+app.get('/',(req,res)=>{
+    res.send("Working..")
+});
+app.use('/api/v1',AllRoutes)
+
+
+
+
+
+app.post("/Joi-validate", async (req, res) => {
     try {
-        const {name ,categoty, price, quantity} =req.body;
-        if(!name || !categoty || !price  || !quantity){
-             return res.json({success:false,error:"All fildes are requared"})
-        }
-        const newProduct = new ProductSchema({
-            name:name ,
-            categoty:categoty,
-             price:price,
-             quantity:quantity
-        })
-        await newProduct.Save();
-        return res.json({success:true ,message:"Produce successfully stored"})
-
-    } catch (error) {
-        return res.json({success:false,error})
+      const { name, category, price, quantity, tags } = req.body;
+      
+      // Validate the request body using ProductSchema2
+      const validationResult = ProductSchema2.validate(req.body);
+  
+      // Check if validation failed
+      if (validationResult.error) {
+        return res.status(400).json({ success: false, error: validationResult.error.details });
+      }
+  
+      // If validation passes, create a new product and save it to the database
+      const newProduct = new ProductSchema({
+        name: name,
+        category: category,
+        price: price,
+        quantity: quantity,
+        tags: tags,
         
+      });
+      
+      await newProduct.save();
+      return res.json({ success: true, message: "Product successfully stored" });
+    } catch (error) {
+      return res.status(500).json({ success: false, error });
     }
+  });
 
-})
-
-
-mongoose.connect(process.env.MONGODB_URL).then(()=>{
-    console.log("DB connected.");
-})
+  
+  mongoose.connect(process.env.MONGODB_URL).then(()=>{
+  console.log("DB Connected");  
+});
 
 app.listen(3001,()=>{
-    console.log("Server is running on port 3001..");
-})
+    console.log("Server is running on port 3001");
+});
 

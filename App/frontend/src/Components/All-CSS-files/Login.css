@@ -76,9 +76,10 @@
     border:none;
     margin-top: 8px;
     height: 23px;
-    width: 70px;
+    width: 70%;
 
   }
+  
 
   .button:hover{
      background-color: rgb(25, 167, 113) ;

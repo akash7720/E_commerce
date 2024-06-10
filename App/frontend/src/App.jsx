@@ -9,6 +9,9 @@ import Navbar from './Components/Navbar';
 import AddCart from './Components/AddCart';
 import UserDetiles from './Components/UserDetiles';
 import Orderdetails from './Components/Orderdetails';
+import AuthContext from './Components/Context/AuthContext'
+
+
 
 function App() {
   return (
@@ -23,6 +26,7 @@ function App() {
           <Route path='/AddCart' element={<AddCart/>}/>
           <Route path='/UserDetiles' element={<UserDetiles/>}/>
           <Route path='/Orderdetails' element={<Orderdetails/>}/>
+          <Route path='/Authcontext' element={<AuthContext/>}/>
       </Routes>
      
     </div>

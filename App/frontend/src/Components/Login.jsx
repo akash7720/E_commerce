@@ -45,9 +45,8 @@ const Login = () => {
             <input type="password" placeholder="Enter Password" name="psw" onChange={handleChange} required /><br/>
 
             <button className='button' type="submit">Login</button><br/>
-            <label>
-              <input type="checkbox" defaultChecked name="remember" /> Remember me
-            </label>
+             <input type="submit" className='button' value="Register" onClick={ ()=>router('/Register')} />
+            
           </div>
 
           <div className="container" style={{ backgroundColor: '#f1f1f1' }}>

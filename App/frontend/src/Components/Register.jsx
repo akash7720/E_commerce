@@ -1,73 +1,77 @@
 
-import React, { useState } from 'react';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
-import './All-CSS-files/Login.css'; 
 
-const Register = () => {
-  const router = useNavigate();
-  
-  const [userData, setUserData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
-  console.log(userData, "userData")
+import axios from "axios";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import './All-CSS-files/Login.css'
 
-  function handleChange(event) {
-    setUserData({ ...userData, [event.target.name]: event.target.value });
-  }
+function Register() {
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (userData.name && userData.email && userData.password && userData.confirmPassword) {
-      if (userData.password === userData.confirmPassword) {
-        // You can perform registration logic here
-        // For now, just displaying success message and navigating to login
-        toast.success("Registration Successful..");
-        router('/Login');
-      } else {
-        toast.error("Password and Confirm Password do not match");
-      }
-    } else {
-      toast.error("All Fields are Required");
+    const router = useNavigate();
+
+    const [userData, setUserData] = useState({ name: "", email: "", password: "", confirmPassword: "" })
+    
+    console.log(userData, "userData")
+
+    function handleChange(event) {
+        // console.log(event.target.value, event.target.name)
+        setUserData({ ...userData, [event.target.name]: event.target.value })
     }
-  }
 
-  return (
-    <div className='Broder-Rg'>
-       {/* <button className='ButtonOne' onClick={() => document.getElementById('id01').style.display = 'block'}>Register</button> */}
-     {/* <div id="id01" className="modal"> */}
-     {/* <span onClick={() => document.getElementById('id01').style.display = 'none'} className="close" title="Close Modal">&times;</span>  */}
+    async function handleSubmit(event) {
+        event.preventDefault();
+        if (userData.name && userData.email && userData.password && userData.confirmPassword) {
+            // await calling backend one server to another server request, backend validation, data to store mongodb
+            try {
+                const response = await axios.post('http://localhost:3001/api/v1/user/register', { userData })
+                // const response = { data: { success: true, message: "Registeration Completed." } }
+                // return res.status(201).json({ success: true, message: "Registeration Completed." })
+                if (response.data.success) {
+                    setUserData({ name: "", email: "", password: "", confirmPassword: "" })
+                    toast.success(response.data.message)
+                    router('/Login')
+                }
+            } catch (error) {
+                toast.error(error.response.data.message)
+            }
+        } else {
+            alert("All fields are required.")
+        }
+    }
 
-      <form onSubmit={handleSubmit} className="modal-content animate">
-        
-      <div className="imgcontainer">
+    return (
+        <div className='Broder-Rg'>
+            <form onSubmit={handleSubmit}  className="modal-content animate">
+
+            <div className="imgcontainer">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0-QDDjwF50CeeLWq9geqzuR__x53t78qUZ9-iy4JuFjG9OXcktZDV5nJA2V9KjQ5T5Lg&usqp=CAU"
              alt="Avatar" className="avatar" />
           </div>
-        <div className="container">
-          <label>Name</label><br/>
-          <input type="text" placeholder="Enter Name" name="name" value={userData.name} onChange={handleChange} required /><br/>
-       
-       
-          <label>Email</label><br/>
-          <input type="email" placeholder="Enter Email" name="email" value={userData.email} onChange={handleChange} required /><br/>
-       
-          <label>Password</label><br/>
-          <input type="password" placeholder="Enter Password" name="password" value={userData.password} onChange={handleChange} required /><br/>
-       
-          <label>Confirm Password</label><br/>
-          <input type="password" placeholder="Confirm Password" name="confirmPassword" value={userData.confirmPassword} onChange={handleChange} required /><br/>
-        
-          <div className="container" style={{ backgroundColor: '#f1f1f1' }}></div>
-          
-          <button className='button' type="submit">Register</button><br/>
-          <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
+
+              <div  className="container">
+                  <label>Name  </label><br />
+                <input type="text" name="name" value={userData.name} onChange={handleChange} required /><br />
+                <label>Email  </label><br />
+                <input type="email" name="email" value={userData.email} onChange={handleChange} required /><br />
+                <label>Password  </label><br />
+                <input type="password" name="password" value={userData.password} onChange={handleChange} required /><br />
+                <label>Confirm Password </label><br />
+                <input type="password" name="confirmPassword" value={userData.confirmPassword} onChange={handleChange} required /><br />
+                <input type="submit" className='button' value="Register" />
+                <input type="submit" className='button' value="Login" onClick={ ()=>router('/Login')} />
+                </div>
+                
+
+                <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
+
             {/* <button type="button"  onClick={() => document.getElementById('id01').style.display = 'none'} className="cancelbtn">Cancel</button><br/> */}
            
           </div>
+
+            </form>
         </div>
-      </form>
-    </div>
-    //  </div>
-  );
-};
+    )
+}
 
 export default Register;

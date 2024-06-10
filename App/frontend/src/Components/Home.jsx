@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
       <div className='Home-nav-1'>
-
+{/* 
       <div className="dropdown">
       <label>Electronics</label>
           <div className="dropdown-content">
@@ -96,7 +96,7 @@ const Home = () => {
        
 
         <label>Offer Zone</label>
-        <label>Grocery</label>
+        <label>Grocery</label> */}
       </div>
     </div>
   );
