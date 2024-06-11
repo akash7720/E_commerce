@@ -1,0 +1,33 @@
+.nav-1{
+     /* border: 5px solid red; */
+     cursor: pointer; 
+    display: flex;
+    justify-content: space-around;
+    font-weight: bolder;
+    font-size: 20px;
+    border-bottom: 2px solid grey;
+}
+.nav-1>div{
+    /* border: 5px solid green; */
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+/* .nav-1>:nth-child(1){
+    /* margin-top: 15px; */
+
+.nav-1>:nth-child(3){
+    /* border: 5px solid blue; */
+    display: flex;
+    justify-content: space-around;
+}
+.nav-1>:nth-child(2)>:hover{
+    color: gray;
+}
+.nav-1>:nth-child(3)>:hover{
+    color: gray;
+
+
+   
+}

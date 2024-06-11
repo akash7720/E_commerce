@@ -1,170 +1,97 @@
-// import React, { useContext, useEffect, useState } from 'react';
-// import toast from 'react-hot-toast';
-// import { useNavigate } from 'react-router-dom';
-// import './All-CSS-files/Login.css'; 
-// import axios from 'axios';
-// import { AuthContext } from './Context/AuthContext';
+ 
+import { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./Context/AuthContext";
+// import axios from "axios";
+import api from "../AxiosConfig";
 
-// const Login = () => {
-//   const { LOGIN, state } = useContext(AuthContext);
-//   const router = useNavigate();
-//   const [userData, setUserData] = useState({ email: "", password: "" });
-
-//   function handleChange(event) {
-    
-//     setUserData({ ...userData, [event.target.name]: event.target.value });
-//   }
-//   async function handleSubmit(event) {
-//     event.preventDefault();
-//     if (userData.email && userData.password) {
-     
-//       try {
-//         const response = await axios.post('http://localhost:3001/api/v1/auth/login', { userData });
-        
-//         if (response.data.success) {
-        
-//           LOGIN(response.data.userData);
-//           setUserData({ email: "", password: "" });
-//           toast.success(response.data.message);
-       
-//           router("/");
-//         } else {
-//           toast.error(response.data.message);
-//         }
-//       } catch (error) {
-//         console.log(error, "error in login");
-       
-//       }
-//     } else {
-//       alert("All fields are required.");
-//     }
-//   }
-
-
-//   useEffect(() => {
-//     console.log(state);
-//     if (state && state?.user?.role !== undefined) {
-//       if (state?.user?.role === "buyer") {
-//         router("/");
-//       } else {
-//         router("/seller");
-//       }
-//     }
-//   }, [state]);
-
-//   return (
-//     <div className='Broder-Rg'>
-//       {/* <button className='ButtonOne' onClick={() => document.getElementById('id01').style.display = 'block'}>Login</button> */}
-
-//       {/* The Modal */}
-//       {/* <div id="id01" className="modal">
-//         <span onClick={() => document.getElementById('id01').style.display = 'none'} className="close" title="Close Modal">&times;</span> */}
-
-//         {/* Modal Content */}
-//         <form onSubmit={handleSubmit} className="modal-content animate">
-//           <div className="imgcontainer">
-//             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0-QDDjwF50CeeLWq9geqzuR__x53t78qUZ9-iy4JuFjG9OXcktZDV5nJA2V9KjQ5T5Lg&usqp=CAU"
-//              alt="Avatar" className="avatar" />
-//           </div>
-
-//           <div className="container">
-//             <label >Email</label><br/>
-//             <input type="Email" placeholder="Enter Email" name="Email" onChange={handleChange} required /><br/>
-
-//             <label>Password</label><br/>
-//             <input type="password" placeholder="Enter Password" name="password" onChange={handleChange} required /><br/>
-
-//             <button className='button' type="submit">Login</button><br/>
-//              <input type="submit" className='button' value="Register" onClick={ ()=>router('/Register')} />
-            
-//           </div>
-
-//           <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
-//             {/* <button type="button"  onClick={() => document.getElementById('id01').style.display = 'none'} className="cancelbtn">Cancel</button><br/> */}
-//             <span className="psw">Forgot <a href="#">password?</a></span>
-//           </div>
-//         </form>
-//       </div>
-//     // </div>
-//   );
-// };
-
-// export default Login;
-
-
-import React, { useContext, useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
-import './All-CSS-files/Login.css'; 
-import axios from 'axios';
-import { AuthContext } from './Context/AuthContext';
-
-const Login = () => {
+function Login() {
   const { LOGIN, state } = useContext(AuthContext);
+
   const router = useNavigate();
+
   const [userData, setUserData] = useState({ email: "", password: "" });
+  console.log(userData, "userData");
+  // userData.name
+  // userData[name]
 
-  const handleChange = (event) => {
+  function handleChange(event) {
+    // console.log(event.target.value, event.target.name)
     setUserData({ ...userData, [event.target.name]: event.target.value });
-  };
+  }
 
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (userData.email && userData.password) {
+      // await calling backend one server to another server request, backend validation, data to store mongodb
       try {
-        const response = await axios.post('http://localhost:3001/api/v1/auth/login', userData);
+        const response = await api.post(
+          "/api/v1/user/login",{ userData },);
+        // const response = { data: { success: true, message: "Login Sucessfull.", token: "abcdefghi", userData: { name: 'Awdiz', email: "awdiz@gmail.com" } } }
+        // return res.status(201).json({ success: true, message: "Registeration Completed." })
         if (response.data.success) {
+          // localStorage.setItem("token", JSON.stringify(response.data.token))
           LOGIN(response.data.userData);
           setUserData({ email: "", password: "" });
           toast.success(response.data.message);
           router("/");
-        } else {
-          toast.error(response.data.message);
+        }else{
+          toast.error(response.data.message)
         }
+
+        
       } catch (error) {
-        console.error("Error in login:", error);
-        toast.error("An error occurred during login. Please try again.");
+        toast.error(error.response.data.message);
       }
     } else {
       alert("All fields are required.");
     }
-  };
+  }
 
-  useEffect(() => {
-    if (state?.user?.role !== undefined) {
-      if (state.user.role === "buyer") {
+  useEffect (()=>{
+    console.log(state);
+    if(state && state?.user?.role !== undefined){
+      if(state?.user?.role === 'buyer'){
         router("/");
-      } else {
+      }else {
         router("/seller");
       }
     }
-  }, [state, router]);
+  },[state])
 
   return (
-    <div className='Broder-Rg'>
-      <form onSubmit={handleSubmit} className="modal-content animate">
-        <div className="imgcontainer">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0-QDDjwF50CeeLWq9geqzuR__x53t78qUZ9-iy4JuFjG9OXcktZDV5nJA2V9KjQ5T5Lg&usqp=CAU"
-            alt="Avatar" className="avatar" />
-        </div>
-
-        <div className="container">
-          <label>Email</label><br/>
-          <input type="email" placeholder="Enter Email" name="email" value={userData.email} onChange={handleChange} required /><br/>
-
-          <label>Password</label><br/>
-          <input type="password" placeholder="Enter Password" name="password" value={userData.password} onChange={handleChange} required /><br/>
-
-          <button className='button' type="submit">Login</button><br/>
-          <button type="button" className='button' onClick={() => router('/Register')}>Register</button>
-        </div>
-
-        <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
-          <span className="psw">Forgot <a href="#">password?</a></span>
-        </div>
+    <div>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <label>Email : </label>
+        <br />
+        <input
+          style={{ border: "1px solid red" }}
+          type="email"
+          name="email"
+          value={userData.email}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <label>Password : </label>
+        <br />
+        <input
+          type="password"
+          name="password"
+          value={userData.password}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <input type="submit" value="Login" />
       </form>
+
+<button onClick={()=> router("/register")}>Register?</button>
+
     </div>
   );
-};
+}
 
 export default Login;

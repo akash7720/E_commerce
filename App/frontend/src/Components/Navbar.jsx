@@ -1,60 +1,64 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import'./All-CSS-files/Navbar.css'
-import { FaUserCircle } from "react-icons/fa";
-import { FiShoppingCart } from "react-icons/fi";
 
+
+
+
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../components/NavbarCss.css';
+import { AuthContext } from './Context/AuthContext';
+import api from '../AxiosConfig';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
-    const router = useNavigate();
+  const router = useNavigate();
+  const { state, LOGOUT } = useContext(AuthContext);
 
-    // const [showMenu,setShowMenu]=useState(false)
+  const Logout = async () => {
+    try {
+      const response = await api.get('/api/v1/user/logout');
+      if (response.data.success) {
+        LOGOUT();
+        toast.success(response.data.message);
+        router('/'); // Optionally navigate to home or login page after logout
+      }
+    } catch (error) {
+      console.log(error);
+     
+    }
+  };
 
   return (
-   
-    <div >
-     
-      <div className='First-nav'>WellCome To your Wedsite</div>
-      
-          <div className='nav-parent'>
-             
-             <div className='Left-nav'>
-                 <p onClick={ ()=>router('/')}>Home</p>
-             </div>
-              
-              <div className='MIddel-nav'>
-                  
-               
-                <input type="text" name="search" className='Search' placeholder="Search.."></input>
-           
-              
-             
-              </div>
- 
-              <div className='Right-nav'>
-                    <div className='R-one'>
-                    <p onClick={ ()=>router('/Login')}>Login</p> 
-                      <p onClick={ ()=>router('/Register')}>Register</p> 
-                     
-                    </div>
-                    <div className='R-two'>
-                         <div><FaUserCircle/></div>
-                         <div onClick={ ()=>router('/AddCart')}><FiShoppingCart /></div>
-                    </div>
+    <div className='nav-1'>
+      <div>
+        {state?.user?.name && <h3>Hello :- {state.user.name}</h3>}
+      </div>
 
-                    {/* <div className='AddProducts'>
-                         <p>Add product </p>
-                         <p>LogOut</p>
-                    </div> */}
-              </div>
-     </div>
+      <div>
+        <p onClick={() => router('/')}>Home</p>
+        <input
+          style={{
+            height: "40%",
+            border: "2px solid black",
+            marginTop: "25px",
+            width: "40%",
+          }}
+          placeholder="Search.."
+        />
+      </div>
+
+      <div>
+        <p onClick={() => router('/Add-To-Cart')}>Cart</p>
+        
+        <p onClick={() => router('/Register')}>Register</p>
+        {/* <p onClick={() => router('/Login')}>Login</p> */}
+        {state?.user?.role ? (
+          <p onClick={Logout}>Logout</p>
+        ) : (
+          <p onClick={() => router('/Login')}>Login</p>
+        )}
+      </div>
     </div>
-    
-  )
-}
+  );
+};
 
-export default Navbar
-
-
-
-
+export default Navbar;
