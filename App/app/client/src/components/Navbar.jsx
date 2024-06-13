@@ -1,10 +1,9 @@
 
-
-
-
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../components/NavbarCss.css';
+import { FaUserCircle } from "react-icons/fa";
+import { FiShoppingCart } from "react-icons/fi";
 import { AuthContext } from './Context/AuthContext';
 import api from '../AxiosConfig';
 import toast from 'react-hot-toast';
@@ -23,39 +22,42 @@ const Navbar = () => {
       }
     } catch (error) {
       console.log(error);
-     
     }
   };
 
   return (
-    <div className='nav-1'>
-      <div>
-        {state?.user?.name && <h3>Hello :- {state.user.name}</h3>}
-      </div>
-
-      <div>
-        <p onClick={() => router('/')}>Home</p>
-        <input
-          style={{
-            height: "40%",
-            border: "2px solid black",
-            marginTop: "25px",
-            width: "40%",
-          }}
-          placeholder="Search.."
-        />
-      </div>
-
-      <div>
-        <p onClick={() => router('/Add-To-Cart')}>Cart</p>
+    <div>
+      <div className='First-nav'>Welcome To your Website</div>
+      
+      <div className='nav-parent'>
+        <div className='Left-nav'>
+        <h3> Hey!__ {state?.user?.name}</h3>
+          <h3 onClick={() => router('/')}>Home</h3>
+         
+        </div>
         
-        <p onClick={() => router('/Register')}>Register</p>
-        {/* <p onClick={() => router('/Login')}>Login</p> */}
-        {state?.user?.role ? (
-          <p onClick={Logout}>Logout</p>
-        ) : (
-          <p onClick={() => router('/Login')}>Login</p>
-        )}
+        {/* <div className='Middle-nav'>
+          <input type="text" name="search" className='Search' placeholder="Search.." />
+        </div> */}
+
+<div className='Middle-nav'>
+  <input type="text" name="search" className='Search' placeholder="Search.." />
+</div>
+        <div className='Right-nav'>
+          <div className='R-one'>
+          <p onClick={() => router('/Add-To-Cart')}>Cart</p>
+            <p onClick={() => router('/Register')}>Register</p>
+            {state?.user?.role?(
+              <p onClick={Logout}>Logout</p>
+            ) : (
+              <p onClick={() => router('/login')}>Login</p>
+            )}
+          </div>
+          <div className='R-two'>
+            <div><FaUserCircle /></div>
+            <div ><FiShoppingCart  /></div>
+          </div>
+        </div>
       </div>
     </div>
   );

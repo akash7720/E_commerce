@@ -1,4 +1,3 @@
-
 import mongoose, { Schema } from "mongoose";
 import Joi from "joi";
 
@@ -9,6 +8,7 @@ const productSchema = new Schema({
   quantity: Number,
   tags: [String],
   user : {type : mongoose.Schema.Types.ObjectId , ref :"User" },
+  image: String,
   
 });
 

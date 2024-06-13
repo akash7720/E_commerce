@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Context/AuthContext";
 // import axios from "axios";
 import api from "../AxiosConfig";
+import './styles/Login.css'
 
 function Login() {
   const { LOGIN, state } = useContext(AuthContext);
@@ -61,9 +62,15 @@ function Login() {
   },[state])
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='Broder-Rg'>
+      
+      <form onSubmit={handleSubmit} className="modal-content animate">
+      <div className="imgcontainer">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0-QDDjwF50CeeLWq9geqzuR__x53t78qUZ9-iy4JuFjG9OXcktZDV5nJA2V9KjQ5T5Lg&usqp=CAU"
+             alt="Avatar" className="avatar" />
+        </div>
+
+        <div className="container"> 
         <label>Email : </label>
         <br />
         <input
@@ -85,10 +92,16 @@ function Login() {
           required
         />
         <br />
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" className='button' />
+        </div>
+        <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
+            {/* <button type="button"  onClick={() => document.getElementById('id01').style.display = 'none'} className="cancelbtn">Cancel</button><br/> */}
+            <span className="psw">Forgot <a href="#">password?</a></span>
+          </div>
+          <button className='button' onClick={()=> router("/register")}>Register?</button>
       </form>
 
-<button onClick={()=> router("/register")}>Register?</button>
+ 
 
     </div>
   );

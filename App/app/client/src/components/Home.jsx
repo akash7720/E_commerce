@@ -2,12 +2,10 @@ import React, { useContext } from 'react'
 import { AuthContext } from './Context/AuthContext';
 import { MycounterContext } from './Context/ProviderCounterContext';
 import  { useEffect, useState } from 'react'
-
 import api from '../AxiosConfig/index';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './styles/Home.css'
-
 
 
 function  Home () {
@@ -31,29 +29,11 @@ function  Home () {
     getProducts();
   }, []);
 
-   const{counter,Increment,Decrement,Reset}=useContext(MycounterContext);
+   const{}=useContext(MycounterContext);
   
-   const {state,LOGOUT}=useContext(AuthContext)
+   const {state}=useContext(AuthContext)
    console.log(state,"state");
     
-  //  const { theme, toggleTheme } = useContext(ThemeContext);
-
-//   async function AddToCart(productId){
-     
-//  try {
-//   const response  =await api.post("/api/v1/add-to-cart",
-//   {userId:state?.user?._id,
-//     productId:productId})
-  
-//     if(response.data.success){
-//       toast.success(response.data.message)
-      
-//     }
-//  } catch (error) {
-//   console.log(error);
-  
-//  }
-//   }
 
 
 async function AddToCart(productId) {
@@ -75,13 +55,9 @@ async function AddToCart(productId) {
     console.log(error);
   }
 }
-
-
-
-
   return (
     <div>
-       <h2>Home Page:-{state?.user?.name}</h2>
+       {/* <h2>Home Page:-{state?.user?.name}</h2> */}
        {/* <button onClick={LOGOUT}>LogOut</button> */}
     
        {/* <h2>CounterContext:{counter}</h2> */}
@@ -92,7 +68,8 @@ async function AddToCart(productId) {
 
          {/* <button onClick={toggleTheme}>Toggle Theme</button>
       <p>Current theme: {theme}</p> */}
-
+      
+      
      <div>
 
 
@@ -101,28 +78,28 @@ async function AddToCart(productId) {
       </div>
 
 
-     <div>
+     <div  className='HomePage'>
       <br/>
-         <h2>AllProducts</h2>
+         <h2>All Products :-</h2>
           {allProducts.length? 
           
-          <div style={{display:"flex" ,flexWrap:"wrap" , justifyContent :"space-around"}}>
+          <div  className="add-products">
            {allProducts.map((productObj)=>(
-           <div style={{width :"15%" , border:"2px solid black" , marginBottom:"5%", height:"250px"}}> 
-               {/* <img style={{height:"54%" , width:"100%"}} src={productObj.image} /> */}
-               <h2>Name :- {productObj.name}</h2>
-               {/* <p>image:-{productObj.image}</p> */}
-              <p>Category :- {productObj.category}</p>
-              <p>Price :- {productObj.price}/-</p>
-              <p>Total Quantities :- {productObj.quantity}</p>
+           <div className="add-product">
+             <p><img  className="img-bg" src={productObj.image} /></p> 
+               <h3>Name :- {productObj.name}</h3>
+              {/* <p>Category :- {productObj.category}</p> */}
+              <p>₹{productObj.price}/-</p>
+              {/* <p>Total Quantities :- {productObj.quantity}</p> */}
               <p>Tags :- {productObj.tags}</p>
-              <button onClick={()=>AddToCart(productObj?._id)}>Add To Cart</button>
-              <button>Add To Wishlist</button>
+             
+              <button onClick={()=>AddToCart(productObj?._id)}  className="addCart-button">Add To Cart</button>
+              {/* <button  className="addCart-button">Add To Wishlist</button> */}
            </div>
          ))}
         </div>:
 
-         <div><h1>Loding..</h1></div>}
+         <div><h1>Loding...</h1></div>}
        
     </div>
      </div>

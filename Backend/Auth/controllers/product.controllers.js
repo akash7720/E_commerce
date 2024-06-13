@@ -1,13 +1,12 @@
 
-// import { ProductSchema } from "../schemas/product.schemas.js";
-
 import { ProductSchema } from "../schemas/product.schema.js";
+
 
 export const addProduct = async(req,res)=>{
     try{
-const {name,category,price,quantity,tags}= req.body.productData;
+const {name,category,price,quantity,tags,image}= req.body.productData;
 const {userId} = req.body;
-if(!name|| !category|| !price|| !quantity || !tags || !userId ){
+if(!name|| !category|| !price|| !quantity || !tags || !userId || !image){
     return res.json({success:false,error:"All fields are required"});
 }
 
@@ -18,7 +17,7 @@ price: price,
 quantity : quantity,
 tags : tags,
 user : userId,
-// image:image
+image:image,
 });
 
 await newProduct.save();
@@ -64,7 +63,7 @@ export const getProductsBySeller = async (req, res) => {
         "user"
       );
       res.json({success: true,products});
-    } catch (error) {9
+    } catch (error) {
       console.log(error);
       return res.json({ success: false, error });
     }
