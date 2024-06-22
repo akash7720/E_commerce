@@ -1,5 +1,5 @@
 .First-nav {
-   background-color: rgb(172, 104, 104);
+   background-color: rgb(178, 119, 119);
    height: 30px;
    color: white;
    font-family: 'Times New Roman', Times, serif;
@@ -9,7 +9,7 @@
  
  .nav-parent {
    /* border: 5px solid red; */
-   background-color: bisque;
+   background-color: rgb(244, 217, 184);
    display: flex;
    justify-content: space-between;
    height: 50px;

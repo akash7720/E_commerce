@@ -37,12 +37,10 @@ const Navbar = () => {
          
         </div>
         
-        {/* <div className='Middle-nav'>
-          <input type="text" name="search" className='Search' placeholder="Search.." />
-        </div> */}
+         
 
 <div className='Middle-nav'>
-  <input type="text" name="search" className='Search' placeholder="Search.." />
+  {/* <input type="text" name="search" className='Search' placeholder="Search.." /> */}
 </div>
         <div className='Right-nav'>
           <div className='R-one'>
