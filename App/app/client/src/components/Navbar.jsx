@@ -8,6 +8,7 @@ import { AuthContext } from './Context/AuthContext';
 import api from '../AxiosConfig';
 import toast from 'react-hot-toast';
 
+
 const Navbar = () => {
   const router = useNavigate();
   const { state, LOGOUT } = useContext(AuthContext);

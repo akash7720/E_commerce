@@ -86,7 +86,7 @@ function Register() {
         </div>
 
         <div className="container">
-        <label>Name : </label>
+        <label>Name </label>
         <br />
         <input
           type="text"
@@ -96,7 +96,7 @@ function Register() {
           required
         />
         <br />
-        <label>Email : </label>
+        <label>Email  </label>
         <br />
         <input
           type="email"
@@ -106,7 +106,7 @@ function Register() {
           required
         />
         <br />
-        <label>Password : </label>
+        <label>Password </label>
         <br />
         <input
           type="password"
@@ -116,7 +116,7 @@ function Register() {
           required
         />
         <br />
-        <label>Confirm Password : </label>
+        <label>Confirm Password  </label>
         <br />
         <input
           type="password"
@@ -126,8 +126,8 @@ function Register() {
           required
         />
         <br />
-        <select onChange={handleSelect}>
-           <option value="buyer">Buyer</option>
+        <select className="buySeller" onChange={handleSelect}>
+           <option  value="buyer">Buyer</option>
            <option value="seller">Seller</option>
         </select>
         <br/>

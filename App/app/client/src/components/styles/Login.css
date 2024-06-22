@@ -7,13 +7,14 @@
   margin: auto;
   margin-top: 10px;
   line-height: 25px;
+  font-size: 16px;
 
 }
 .ButtonOne{
   border: 2px solid red;
     background-color: aquamarine;
     margin-top: 40px;
-    height: 30px;
+    height: 35px;
     width: 80px;
    /* border: 5px solid rgb(8, 188, 167); */
   font-size: 16px;
@@ -75,7 +76,6 @@
     background-color: rgb(83, 187, 147);
     border:none;
     margin-top: 8px;
-    height: 70px;
     width: 50px;
 
   }
@@ -83,24 +83,24 @@
   .button:hover{
      background-color: rgb(21, 209, 137) ;
   }
-  .cancelbtn{
+  /* .cancelbtn{
     background-color: red;
     margin-top: 10px;
     height: 23px;
     width: 60px;
     border: none;
 
-  }
-  .container{
+  } */
+  /* .container{
     width: 70%;
     align-items: center;
     margin: auto;
     
-  }
-  .container>input{
+  } */
+  /* .container>input{
     height: 20px;
     width: 200px;
-  }
+  } */
   
   @-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}

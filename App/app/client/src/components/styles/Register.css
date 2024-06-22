@@ -4,15 +4,16 @@
     height: 550px;
     margin: auto;
     margin-top: 10px;
-    line-height: 25px;
+    line-height: 26px;
+    font-size: 16px;
   
   }
   .ButtonOne{
     border: 2px solid red;
-      background-color: aquamarine;
-      margin-top: 40px;
-      height: 30px;
-      width: 80px;
+    background-color: aquamarine;
+    margin-top: 40px;
+    height: 40px;
+    width: 80px;
     border: 1px solid rgb(8, 188, 167);
     font-size: 16px;
     font-weight: 600;
@@ -73,34 +74,41 @@
       background-color: rgb(57, 216, 155);
       border:none;
       margin-top: 8px;
-      height: 23px;
+      height: 30px;
       width: 70px;
-  
+      font-size: 14px;
     }
   
     .button:hover{
        background-color: rgb(25, 167, 113) ;
     }
-    .cancelbtn{
+    /* .cancelbtn{
       background-color: red;
       margin-top: 10px;
       height: 23px;
       width: 60px;
       border: none;
   
-    }
-    .container{
+    } */
+    /* .container{
       width: 70%;
       align-items: center;
       margin: auto;
       
-    }
+    } */
     .container>input{
       height: 20px;
       width: 200px;
     }
     
-    @-webkit-keyframes animatezoom {
+    .buySeller{
+      font-size: 17px;
+      height: 24px;
+      width: 13%;
+      margin-top: 10px;
+
+    }
+    /* @-webkit-keyframes animatezoom {
       from {-webkit-transform: scale(0)}
       to {-webkit-transform: scale(10)}
     }
@@ -108,4 +116,4 @@
     @keyframes animatezoom {
       from {transform: scale(0)}
       to {transform: scale(1)}
-    } 
+    }  */
