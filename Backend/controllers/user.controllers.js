@@ -241,6 +241,7 @@ export const validateToken = async (req, res) => {
 
 
   // Add the checkout function
+  
 export const checkout = async (req, res) => {
   try {
     const { userId } = req.body;
