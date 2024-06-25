@@ -12,8 +12,8 @@ import AllRoutes from "./routes/index.js"
 const app = express();
 var corsOptions = {
   origin : 
-  "http://localhost:3000",
-  // [ "https://react-02-4l1e.vercel.app"],
+  // "http://localhost:3000",
+   [ "https://e-commerce-orpin-beta.vercel.app/"],
  credentials:true,
  };
 
