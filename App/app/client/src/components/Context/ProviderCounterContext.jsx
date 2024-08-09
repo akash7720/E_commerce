@@ -1,5 +1,4 @@
 
-
 import React, { createContext, useState } from 'react'
 
 export const MycounterContext=createContext();
@@ -26,5 +25,6 @@ const ProviderCounterContext = ({children}) => {
   )
 }
 
-export default ProviderCounterContext
+export default ProviderCounterContext;
+
 

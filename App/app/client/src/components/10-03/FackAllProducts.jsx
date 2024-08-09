@@ -1,112 +1,99 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-// const FakeStoreAllProducts = () => {
-//   const [allProducts, setAllProducts] = useState([]); 
-//   //   console.log(allProducts, "allProducts");
+const FakeStoreAllProducts = () => {
 
-//   const [search, setSearch] = useState(""); 
-//   const [filterProducts, setFilterProducts] = useState([]); 
+  const [allProducts, setAllProducts] = useState([]); 
+ 
 
-//   const router = useNavigate();
+  const [search, setSearch] = useState(""); 
+  const [filterProducts, setFilterProducts] = useState([]); 
 
-//   async function getProducts() {
-//     try {
-//       const response = await axios.get("https://fakestoreapi.com/products");
-//       // console.log(response, "response from fakestore api")
-//       if (response?.data.length) {
-//         setAllProducts(response.data);
-//         setFilterProducts(response.data);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
+  const router = useNavigate();
 
-//   function redirect(id) {
-//     router(`/fake-single-product/${id}`);
-//   }
+  async function getProducts() {
+    try {
+      const response = await axios.get("https://fakestoreapi.com/products");
+      // console.log(response, "response from fakestore api")
+      if (response?.data.length) {
+        setAllProducts(response.data);
+        setFilterProducts(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-//   function handleChange(event) {
-//     console.log(event.target.value);
+  function redirect(id) {
+    router(`/fake-single-product/${id}`);
+  }
 
-//     setSearch(event.target.value);
+  function handleChange(event) {
+    console.log(event.target.value);
 
-//     let userword = event.target.value.toLowerCase();
+    setSearch(event.target.value);
 
-//     const filteredProduts = allProducts.filter((product) => { 
+    let userword = event.target.value.toLowerCase();
+
+    const filteredProduts = allProducts.filter((product) => { 
       
-//       return product.title.toLowerCase().includes(userword);
-//     });
+      return product.title.toLowerCase().includes(userword);
+    });
 
-//     setFilterProducts(filteredProduts); 
+    setFilterProducts(filteredProduts); 
 
-//     console.log(filteredProduts, "filteredProduts");
-//   }
+    console.log(filteredProduts, "filteredProduts");
+  }
 
-//   useEffect(() => {
-//     getProducts();
-//   }, []);
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-//   return (
-//     <div>
-//       <h1>Fake Store All Products</h1>
-//       <div>
-//         <h2>Search Product:</h2>
-//         <input placeholder="Mens.." value={search} onChange={handleChange} />
-//       </div>
-      
-//       {filterProducts?.length ? (
-//         <div
-//           style={{
-//             marginTop: "100px",
-//             display: "flex",
-//             flexWrap: "wrap",
-//             justifyContent: "space-around",
-            
-//           }}
-//         >
-//           {filterProducts.map((productObj) => (
-//             <div
-//               onClick={() => redirect(productObj.id)}
-//               style={{
-//                 width: "20%",
-//                 border: "2px solid black",
-//                 height: "250px",
-              
-//               }}
-//             >
-//               <img
-//                 style={{ height: "70%", width: "100%" }}
-//                 src={productObj.image}
-//               />
-//               <p>{productObj.title}</p>
-//             </div>
-//           ))}
-//         </div>
-//       ) : (
-//         <div>Loading...</div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default FakeStoreAllProducts;
-
-
-
-import React from 'react'
-
-const FackAllProducts = () => {
-  
-
-  
   return (
     <div>
-      <h1>FackAllProducts</h1>
+      <h1>Fake Store All Products</h1>
+      <div>
+        <h2>Search Product:</h2>
+        <input placeholder="Mens.." value={search} onChange={handleChange} />
+      </div>
+      
+      {filterProducts?.length ? (
+        <div
+          style={{
+            marginTop: "100px",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            
+          }}
+        >
+          {filterProducts.map((productObj) => (
+            <div
+              onClick={() => redirect(productObj.id)}
+              style={{
+                width: "20%",
+                border: "2px solid black",
+                height: "250px",
+              
+              }}
+            >
+              <img
+                style={{ height: "70%", width: "100%" }}
+                src={productObj.image}
+              />
+              <p>{productObj.title}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default FackAllProducts
+export default FakeStoreAllProducts;
+
+
+
