@@ -1,5 +1,4 @@
- 
-import { useContext, useEffect, useState } from "react";
+ import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Context/AuthContext";
@@ -108,3 +107,5 @@ function Login() {
 }
 
 export default Login;
+
+
